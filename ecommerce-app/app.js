@@ -14,6 +14,8 @@ var usersRouter = require('./routes/users');
 //use Routes
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
+//app.use('/', productsRouter);
+//app.use('/users', usersRouter);
 
 app.use(cors({
   origin: '*',

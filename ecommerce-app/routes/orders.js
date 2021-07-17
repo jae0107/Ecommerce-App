@@ -126,9 +126,9 @@ router.post('/new', (req, res) => {
         }
 
         res.json({
-          message: `Order successfully placed with order id ${newOrderId}`,
+          message: `Order successfully placed with order id ${newOrderId.insertId}`,
           success: true,
-          order_id: newOrderId,
+          order_id: newOrderId.insertId,
           products: products
         });
       }).catch(err => res.json(err));

@@ -5,23 +5,35 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var app = express();
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: "Shop API",
+      description: "Backend Api",
+      contact: {
+        name: 'Amazing Developer'
+      },
+      servers: "http://localhost:3636"
+    }
+  },
+  apis: ["app.js", ".routes/*.js"]
+};
 
-// Import Routes
-var productsRouter = require('./routes/products');
-var usersRouter = require('./routes/users');
-
-//use Routes
-app.use('/api/products', productsRouter);
-app.use('/api/users', usersRouter);
-//app.use('/', productsRouter);
-//app.use('/users', usersRouter);
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use(cors({
   origin: '*',
   methods: ['GET', 'PUT', 'DELETE', 'PATCH', 'POST'],
   allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With, Accept'
 }));
+
+// Import Routes
+var productsRouter = require('./routes/products');
+var ordersRouter = require('./routes/orders');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +45,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+//use Routes
+app.use('/api/products', productsRouter);
+app.use('/api/orders', ordersRouter);
+//app.use('/', productsRouter);
+//app.use('/orders', ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

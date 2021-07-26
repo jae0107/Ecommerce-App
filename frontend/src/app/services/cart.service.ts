@@ -83,6 +83,15 @@ export class CartService {
     }
   }
 
+  CalculateSubTotal(index): number {
+    let subTotal = 0;
+
+    let p = this.cartDataServer.data[index];
+    subTotal = p.product.price * p.numInCart;
+
+    return subTotal;
+  }
+
   AddProductToCart(id: number, quantity?: number) {
     this.productService.getSingleProduct(id).subscribe(prod => {
       // If the cart is empty
@@ -161,10 +170,12 @@ export class CartService {
       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
 
     } else {
-      data.numInCart--;
+      if(data.numInCart > 1){
+        data.numInCart--;
+      }
 
-      if (data.numInCart < 1) {
-        //TODO delete the product from cart
+      if (data.numInCart <= 1) {
+        this.DeleteProductFromCart(index);
         this.cartData$.next({...this.cartDataServer});
         
       } else {
@@ -178,7 +189,11 @@ export class CartService {
   }
 
   DeleteProductFromCart(index: number) {
-    if (window.confirm('Are you sure you want to delete the item?')) {
+    let check = window.confirm('Are you sure you want to delete the item?');
+    //console.log(check);
+    if (check) {
+      let data = this.cartDataServer.data[index];
+      data.numInCart--;
       this.cartDataServer.data.splice(index, 1);
       this.cartDataClient.prodData.splice(index, 1);
       this.CalculateTotal();

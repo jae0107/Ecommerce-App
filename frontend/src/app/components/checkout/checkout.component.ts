@@ -20,13 +20,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private cartService: CartService,
     private orderService: OrderService,
     private router: Router,
-    private  spinner: NgxSpinnerService) { 
-      /*this.checkoutForm = this.fb.group({
-        firstname: ['', [Validators.required]],
-        lastname: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        phone: ['', [Validators.required]],
-      });*/
+    private  spinner: NgxSpinnerService,
+    private fb: FormBuilder) {
     }
 
   ngOnInit(): void {

@@ -120,8 +120,8 @@
         </div>
         <div class="order-products">
           <div class="order-col" *ngFor="let c of cartData.data;">
-            <div>{{c.numInCart}}x {{c.product.name}}</div>
-            <div>{{(c.product.price*c.numInCart) | currency:'AUD'}}</div>
+            <div>{{c.numInCart}} x {{c.product.name}}</div>
+            <div>{{(c.product.price * c.numInCart) | currency:'AUD'}}</div>
           </div>
         </div>
         <div class="order-col">

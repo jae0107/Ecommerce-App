@@ -18,9 +18,9 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: any;
 
   constructor(private cartService: CartService,
-    private orderService: OrderService,
-    private router: Router,
-    private  spinner: NgxSpinnerService) { 
+              private orderService: OrderService,
+              private router: Router,
+              private  spinner: NgxSpinnerService) { 
     }
 
   ngOnInit(): void {

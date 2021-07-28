@@ -35,6 +35,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
         this.product = prod;
 
         if (prod.images !== null) {
+          //console.log(this.product);
           this.thumbimages = prod.images.split(';');
         }
       });
@@ -86,12 +87,14 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   Increase() {
     let value = parseInt(this.quantityInput.nativeElement.value);
+
     if (this.product.quantity >= 1){
       value++;
 
       if (value > this.product.quantity) {
         value = this.product.quantity;
       }
+
     } else {
       return;
     }
@@ -107,9 +110,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
       if (value <= 0) {
         value = 0;
       }
+
     } else {
       return;
     }
+
     this.quantityInput.nativeElement.value = value.toString();
   }
 }

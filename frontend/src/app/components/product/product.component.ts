@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { map } from "rxjs/operators";
+import { ProductModelServer } from 'src/app/models/product.model';
 
 declare let $: any;
 
@@ -15,12 +16,15 @@ export class ProductComponent implements OnInit, AfterViewInit {
   id: number;
   product;
   thumbimages: any[] = [];
+  related_products: any[] = [];
+  //related_products: ProductModelServer[] = [];
 
   @ViewChild('quantity') quantityInput;
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -33,11 +37,19 @@ export class ProductComponent implements OnInit, AfterViewInit {
       
       this.productService.getSingleProduct(this.id).subscribe(prod => {
         this.product = prod;
-
+        //console.log(this.product.category);
         if (prod.images !== null) {
           //console.log(this.product);
           this.thumbimages = prod.images.split(';');
         }
+
+        this.productService.getProductsFromCategory(this.product.category).subscribe((same_cat: any) => {
+          this.related_products = same_cat.products;
+          this.related_products = this.related_products.filter(i => {
+            return i.id !== this.product.id;
+          });
+          //console.log(this.product.category, this.related_products);
+        });
       });
     });
   }
@@ -116,5 +128,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
     }
 
     this.quantityInput.nativeElement.value = value.toString();
+  }
+
+  selectProduct(id: number) {
+    this.router.navigate(['/product', id]).then();
+
   }
 }

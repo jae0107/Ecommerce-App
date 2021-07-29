@@ -30,9 +30,10 @@ export class UserService {
 
   //  Login User with Email and Password
   loginUser(email: string, password: string) {
-    this.httpClient.post<ResponseModel>(`${this.SERVER_URL}/auth/login`, {email, password})
+    this.httpClient.post<ResponseModel>(`${this.SERVER_URL}auth/login`, {email, password})
     .pipe(catchError((err: HttpErrorResponse) => of(err.error.message)))
     .subscribe((data: ResponseModel) => {
+      console.log(data);
       if (typeof (data) === 'string') {
         this.loginMessage$.next(data);
 
@@ -59,7 +60,7 @@ export class UserService {
   registerUser(formData: any, photoUrl?: string, typeOfUser?: string): Observable<{ message: string }> {
     const {fname, lname, email, password} = formData;
     console.log(formData);
-    return this.httpClient.post<{ message: string }>(`${this.SERVER_URL}/auth/register`, {
+    return this.httpClient.post<{ message: string }>(`${this.SERVER_URL}auth/register`, {
       email,
       lname,
       fname,

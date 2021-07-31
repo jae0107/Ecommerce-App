@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { ProfileGuard } from './guard/profile.guard';
 
@@ -30,6 +31,13 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]
+  },
+  {
+    path: 'register', component: RegisterComponent
+  },
+  // Wildcard Route if no route is found == 404 NOTFOUND page
+  {
+    path: '**', pathMatch: 'full', redirectTo: ''
   }
 ];
 

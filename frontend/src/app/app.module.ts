@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +16,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     ProductComponent,
     ThankyouComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,9 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule
   ],
   providers: [
     {

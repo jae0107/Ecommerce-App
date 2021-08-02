@@ -23,7 +23,7 @@ This is a e-commerce website using Node.js for backend and Angular for frontend.
 ## Homepage
 
 <img src = "https://user-images.githubusercontent.com/79579314/127900920-f352e3c7-711a-496d-bc25-bce4d6863a40.png" width="400px">
-<img src = "https://user-images.githubusercontent.com/79579314/127901065-0e5551c3-16d3-480f-bc5e-3c909ed3ad09.png" width="400px">
+<img src = "https://user-images.githubusercontent.com/79579314/127902012-1428a9df-74d4-4556-b5e7-508f892dabcd.png" width="400px">
 
 ## Login page
 

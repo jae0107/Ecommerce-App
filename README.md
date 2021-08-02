@@ -43,4 +43,4 @@ This is a e-commerce website using Node.js for backend and Angular for frontend.
 
 ## Checkout page
 
-<img src = "(https://user-images.githubusercontent.com/79579314/127901824-0c737b20-dbeb-45ff-9fde-d8d7eac53b3b.png" width="400px">
+<img src = "https://user-images.githubusercontent.com/79579314/127901824-0c737b20-dbeb-45ff-9fde-d8d7eac53b3b.png" width="400px">

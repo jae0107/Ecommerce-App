@@ -20,13 +20,14 @@ export class UserService {
   constructor(private authService: SocialAuthService,
               private httpClient: HttpClient) { 
     authService.authState.subscribe((user: SocialUser) => {
-      /*if (user != null) {
+      if (user != null) {
         this.auth = true;
         this.authState$.next(this.auth);
         this.userData$.next(user);
-      }*/
+      }
+      /*console.log(user);
       if (user != null) {
-        this.httpClient.get(`${this.SERVER_URL}/users/validate/${user.email}`).subscribe((res: { status: boolean, user: object }) => {
+        this.httpClient.get(`${this.SERVER_URL}users/${user.email}`).subscribe((res: { status: boolean, user: object }) => {
           //  No user exists in database with Social Login
           if (!res.status) {
             // Send data to backend to register the user in database so that the user can place orders against his user id
@@ -53,7 +54,7 @@ export class UserService {
           }
         });
 
-      }
+      }*/
     });
   }
 

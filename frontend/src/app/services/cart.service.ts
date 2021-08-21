@@ -170,15 +170,21 @@ export class CartService {
       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
 
     } else {
-      if(data.numInCart > 1){
-        data.numInCart--;
-      }
 
       if (data.numInCart <= 1) {
         this.DeleteProductFromCart(index);
         this.cartData$.next({...this.cartDataServer});
         
       } else {
+        this.cartData$.next({...this.cartDataServer});
+        this.cartDataClient.prodData[index].incart = data.numInCart;
+        this.CalculateTotal();
+        this.cartDataClient.total = this.cartDataServer.total;
+        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+      }
+
+      if(data.numInCart > 1){
+        data.numInCart--;
         this.cartData$.next({...this.cartDataServer});
         this.cartDataClient.prodData[index].incart = data.numInCart;
         this.CalculateTotal();

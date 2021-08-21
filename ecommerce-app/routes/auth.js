@@ -38,6 +38,7 @@ router.post('/register', [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
+        console.log(errors);
         return res.status(422).json({errors: errors.array()});
     } else {
 
@@ -59,7 +60,7 @@ router.post('/register', [
             lname: lname || null,
             fname: fname || null
         }).then(lastId => {
-            if (lastId > 0) {
+            if (lastId.affectedRows > 0) {
                 res.status(201).json({message: 'Registration successful.'});
             } else {
                 res.status(501).json({message: 'Registration failed.'});
